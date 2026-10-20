@@ -40,10 +40,10 @@ export default function OpengraphImage() {
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
         <div style={{ fontSize: 64, fontWeight: 800, lineHeight: 1.1, maxWidth: 980 }}>
-          Mais oportunidades de vender para o governo.
+          Um departamento inteiro de licitações dentro da sua empresa.
         </div>
         <div style={{ fontSize: 30, color: '#7E97B0', maxWidth: 960 }}>
-          Inteligência artificial, oportunidades de licitação e treinamento em um só lugar.
+          Inteligência artificial • Gestão de licitações • Método LEVE
         </div>
       </div>
       <div style={{ display: 'flex', height: 8, width: 160, borderRadius: 4, background: '#F97316' }} />

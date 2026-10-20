@@ -1,28 +1,32 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Cta } from '@/components/landing/Cta'
+import { DeviceMockup } from '@/components/landing/DeviceMockup'
 import { LandingAnalytics } from '@/components/landing/LandingAnalytics'
 import { StickyCta } from '@/components/landing/StickyCta'
 import { VideoEmbed } from '@/components/landing/VideoEmbed'
 import {
+  IconCalendar,
   IconCheck,
-  IconClock,
-  IconDocSearch,
-  IconFileArrow,
   IconFileCheck,
-  IconGraduation,
-  IconHelp,
   IconInfo,
   IconLayers,
-  IconMessageQuestion,
-  IconPlay,
   IconScale,
   IconSearch,
   IconSeedling,
+  IconShield,
   IconSparkle,
-  IconTarget,
+  IconTrendUp,
   IconZap,
+  IconBuilding,
+  IconEye,
+  IconUsers,
+  IconBarChart,
+  IconFlag,
+  IconTarget,
+  IconHardHat,
 } from '@/components/landing/Icons'
+import { CASES, MENSALIDADE, MENTOR, SALARIO_ANALISTA, SALARIO_FONTE, SHOW_PLACEHOLDERS } from '@/components/landing/content'
 import { KIWIFY_URL, LOGIN_URL, PRIVACY_URL, SITE_URL, TERMS_URL, WHATSAPP_GERAL_URL, YOUTUBE_VIDEO_ID } from '@/components/landing/links'
 import s from '@/components/landing/landing.module.css'
 
@@ -50,94 +54,72 @@ export const metadata: Metadata = {
 
 const VIDEO_TITLE = 'Apresentação oficial do Departamento Leve'
 
-const PROBLEMAS = [
+const brl = (v: number) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 })
+
+// Atividades de uma equipe de licitações que a plataforma ajuda a executar.
+const ATIVIDADES = [
   {
     icon: IconSearch,
-    title: 'Encontrar oportunidades relevantes',
-    text: 'Identificar licitações compatíveis com o perfil da empresa pode consumir tempo e dificultar a rotina.',
-  },
-  {
-    icon: IconDocSearch,
-    title: 'Entender os editais',
-    text: 'Editais extensos e cheios de requisitos exigem atenção para identificar condições, prazos e documentos necessários.',
-  },
-  {
-    icon: IconFileCheck,
-    title: 'Preparar a documentação',
-    text: 'Organizar declarações e outros documentos demanda cuidado e pode tornar o processo mais trabalhoso.',
-  },
-  {
-    icon: IconHelp,
-    title: 'Saber como agir diante de dúvidas',
-    text: 'Entender como solicitar esclarecimentos, questionar exigências ou preparar um recurso administrativo pode ser um desafio para quem não domina os procedimentos.',
-  },
-]
-
-const SOLUCAO = [
-  {
-    icon: IconTarget,
-    title: 'Oportunidades alinhadas ao perfil da empresa',
-    text: 'Identifique oportunidades de licitação que correspondam ao perfil e aos interesses do seu negócio.',
+    title: 'Pesquisa',
+    text: 'Busca de oportunidades de licitação alinhadas ao perfil e aos interesses da sua empresa.',
   },
   {
     icon: IconSparkle,
-    title: 'Análise de editais com inteligência artificial',
-    text: 'Utilize a IA para agilizar a leitura do edital, compreender requisitos importantes e apoiar sua decisão sobre participar ou não.',
+    title: 'Análise',
+    text: 'Leitura do edital com inteligência artificial para destacar requisitos, condições e prazos importantes.',
   },
   {
     icon: IconFileCheck,
-    title: 'Preparação de declarações e documentos',
-    text: 'Gere declarações com auxílio da plataforma, revise as informações e aprove o conteúdo antes de utilizá-lo.',
+    title: 'Documentação',
+    text: 'Preparação de declarações com apoio da plataforma, para você revisar e aprovar antes de usar.',
   },
   {
-    icon: IconLayers,
-    title: 'Assistentes de IA para etapas administrativas',
-    text: 'Conte com ferramentas que ajudam a estruturar pedidos de esclarecimento, impugnações e recursos administrativos.',
+    icon: IconShield,
+    title: 'Certidões',
+    text: 'Controle das certidões da empresa com alerta visual de validade: em dia, atenção ou vencida.',
   },
-]
-
-const ETAPAS = [
-  {
-    title: 'Encontre oportunidades',
-    text: 'Consulte oportunidades de licitação compatíveis com o perfil da sua empresa.',
-  },
-  {
-    title: 'Analise o edital com IA',
-    text: 'Utilize os recursos de inteligência artificial para agilizar a leitura e identificar informações relevantes para sua avaliação.',
-  },
-  {
-    title: 'Prepare a documentação',
-    text: 'Apoie a preparação das declarações e de outros materiais necessários. Revise os dados e valide os documentos antes de utilizá-los.',
-  },
-  {
-    title: 'Aprenda e avance com mais segurança',
-    text: 'Acesse o treinamento em videoaulas e utilize os assistentes de IA para apoiar etapas específicas do processo.',
-  },
-]
-
-const ASSISTENTES = [
   {
     icon: IconScale,
-    title: 'Assistente de Impugnação',
-    text: 'Ajuda a organizar argumentos e preparar minutas de impugnação com base nas informações fornecidas e nos pontos do edital que precisam ser avaliados.',
+    title: 'Impugnação, esclarecimento e recurso',
+    text: 'Três assistentes de IA que ajudam a estruturar minutas de impugnações, pedidos de esclarecimento e recursos administrativos.',
   },
   {
-    icon: IconMessageQuestion,
-    title: 'Assistente de Esclarecimentos',
-    text: 'Ajuda a formular pedidos de esclarecimento para apresentar dúvidas sobre requisitos, condições ou disposições do edital.',
-  },
-  {
-    icon: IconFileArrow,
-    title: 'Assistente de Recursos Administrativos',
-    text: 'Ajuda a estruturar minutas de recursos administrativos, organizando os argumentos e as informações relevantes para revisão.',
+    icon: IconCalendar,
+    title: 'Acompanhamento',
+    text: 'Painel de negócios e agenda para acompanhar as datas e o andamento das oportunidades da sua empresa.',
   },
 ]
 
-const TREINAMENTO = [
-  'Aprendizado sobre licitações.',
-  'Conteúdo em videoaulas.',
-  'Conhecimento combinado com ferramentas tecnológicas.',
-  'Apoio para quem deseja começar ou organizar melhor sua atuação.',
+const TRILHAS = [
+  {
+    icon: IconFlag,
+    title: 'Licitações',
+    text: 'Fundamentos e procedimentos para participar de licitações públicas com mais segurança.',
+  },
+  {
+    icon: IconTarget,
+    title: 'Estratégias',
+    text: 'Como escolher as oportunidades certas e posicionar sua empresa nas disputas.',
+  },
+  {
+    icon: IconTrendUp,
+    title: 'Vendas',
+    text: 'Como transformar o mercado público em um canal de vendas para o seu negócio.',
+  },
+  {
+    icon: IconHardHat,
+    title: 'Engenharia',
+    text: 'Conteúdo voltado a empresas que disputam obras e serviços de engenharia.',
+  },
+]
+
+const VANTAGENS = [
+  { icon: IconEye, text: 'Maior visibilidade para sua empresa' },
+  { icon: IconUsers, text: 'Você escolhe seus clientes' },
+  { icon: IconLayers, text: 'Vendas e serviços em grande escala' },
+  { icon: IconTrendUp, text: 'Aumento do faturamento' },
+  { icon: IconBarChart, text: 'Previsibilidade de faturamento' },
+  { icon: IconBuilding, text: 'Venda para o maior cliente do Brasil' },
 ]
 
 const PUBLICO = [
@@ -158,15 +140,6 @@ const PUBLICO = [
   },
 ]
 
-const BENEFICIOS = [
-  { icon: IconClock, text: 'Agilize a leitura de editais com apoio da IA.' },
-  { icon: IconTarget, text: 'Organize melhor a avaliação das oportunidades.' },
-  { icon: IconFileCheck, text: 'Apoie a preparação de declarações.' },
-  { icon: IconScale, text: 'Estruture minutas de pedidos de esclarecimento, impugnações e recursos.' },
-  { icon: IconGraduation, text: 'Aprenda com treinamento em videoaulas.' },
-  { icon: IconLayers, text: 'Reúna ferramentas e conhecimento em uma única solução.' },
-]
-
 const FAQ = [
   {
     q: 'O que é o Departamento Leve?',
@@ -177,28 +150,24 @@ const FAQ = [
     a: 'É voltada especialmente para MEIs, microempresas e pequenas empresas que desejam começar ou melhorar sua participação em licitações públicas.',
   },
   {
-    q: 'Preciso entender de inteligência artificial para utilizar a plataforma?',
-    a: 'A proposta é reunir recursos de tecnologia em uma experiência prática, complementada por treinamento. O usuário deve conhecer as informações de sua empresa e revisar os materiais gerados.',
+    q: 'O que é o Método LEVE?',
+    a: 'É o conteúdo de capacitação que acompanha a plataforma, organizado em quatro trilhas — Licitações, Estratégias, Vendas e Engenharia — com mais de 30 aulas de conteúdo bônus.',
   },
   {
-    q: 'A inteligência artificial analisa os editais?',
-    a: 'Sim. A plataforma utiliza recursos de IA para apoiar a leitura e a análise dos editais, ajudando o usuário a identificar informações relevantes para sua decisão.',
+    q: 'Preciso entender de inteligência artificial para utilizar a plataforma?',
+    a: 'A proposta é reunir recursos de tecnologia em uma experiência prática, complementada por treinamento. O usuário deve conhecer as informações de sua empresa e revisar os materiais gerados.',
   },
   {
     q: 'A plataforma gera documentos automaticamente?',
     a: 'Ela auxilia na preparação de declarações e disponibiliza assistentes de IA para apoiar a elaboração de minutas administrativas. As informações precisam ser revisadas e aprovadas pelo usuário.',
   },
   {
-    q: 'Quais são os assistentes de IA disponíveis?',
-    a: 'A solução inclui assistentes para impugnações, pedidos de esclarecimento e recursos administrativos.',
-  },
-  {
     q: 'O Departamento Leve garante que minha empresa ganhará uma licitação?',
     a: 'Não. Nenhuma ferramenta pode garantir a vitória em uma licitação. O Departamento Leve oferece recursos de apoio e treinamento para ajudar na organização e na preparação da empresa.',
   },
   {
-    q: 'Posso conhecer a plataforma gratuitamente?',
-    a: 'Você pode entrar em contato com um consultor para esclarecer dúvidas e solicitar acesso gratuito por 7 dias. O acesso não é liberado automaticamente pela landing page.',
+    q: 'Como funciona o teste de 7 dias?',
+    a: 'Você fala com um consultor pelo WhatsApp, tira suas dúvidas e solicita o acesso gratuito por 7 dias. O acesso é liberado pelo consultor, não automaticamente pela página.',
   },
   {
     q: 'Preciso falar com um consultor para comprar?',
@@ -206,11 +175,7 @@ const FAQ = [
   },
   {
     q: 'Quanto custa o Departamento Leve?',
-    a: 'O valor e as condições comerciais estão disponíveis no checkout oficial da Kiwify. Se tiver dúvidas antes de comprar, você também pode falar com um consultor.',
-  },
-  {
-    q: 'Como faço para começar?',
-    a: 'Você pode clicar em “Quero comprar” para acessar o checkout ou falar com um consultor pelo WhatsApp.',
+    a: `A assinatura custa ${brl(MENSALIDADE)} por mês. O valor e as condições atualizadas ficam no checkout oficial da Kiwify.`,
   },
 ]
 
@@ -250,8 +215,19 @@ function SectionHead({ id, eyebrow, title, intro, center }: { id: string; eyebro
   )
 }
 
+function Placeholder({ label, className }: { label: string; className?: string }) {
+  return (
+    <div className={`${s.placeholder} ${className ?? ''}`}>
+      <span>{label}</span>
+    </div>
+  )
+}
+
 export default function Home() {
   const year = new Date().getFullYear()
+  const hasMentor = Boolean(MENTOR.name && MENTOR.photo)
+  const showMentor = hasMentor || SHOW_PLACEHOLDERS
+  const showCases = CASES.length > 0 || SHOW_PLACEHOLDERS
 
   return (
     <div className={`${s.page} ${inter.className}`}>
@@ -260,7 +236,7 @@ export default function Home() {
         Pular para o conteúdo
       </a>
 
-      {/* 1 — HEADER */}
+      {/* HEADER */}
       <header className={s.header}>
         <div className={`${s.container} ${s.headerInner}`}>
           <a href="#inicio" className={s.brand} aria-label="Departamento Leve — início">
@@ -270,9 +246,10 @@ export default function Home() {
             <span className={s.brandName}>Departamento Leve</span>
           </a>
           <nav className={s.nav} aria-label="Navegação principal">
-            <a href="#como-funciona">Como funciona</a>
-            <a href="#o-que-esta-incluido">O que está incluído</a>
-            <a href="#duvidas">Dúvidas frequentes</a>
+            <a href="#plataforma">A plataforma</a>
+            <a href="#metodo">Método LEVE</a>
+            <a href="#investimento">Investimento</a>
+            <a href="#duvidas">Dúvidas</a>
           </nav>
           <div className={s.headerActions}>
             {LOGIN_URL && (
@@ -288,260 +265,289 @@ export default function Home() {
       </header>
 
       <main id="conteudo">
-        {/* 2 — HERO */}
+        {/* HERO — foco no resultado */}
         <section id="inicio" className={`${s.section} ${s.dark} ${s.hero}`} aria-labelledby="hero-title">
-          <div className={`${s.container} ${s.heroGrid}`}>
-            <div className={s.heroCopy}>
-              <p className={s.badge}>
-                <IconSparkle className={s.badgeIcon} />
-                Inteligência artificial para licitações públicas
-              </p>
-              <h1 id="hero-title" className={s.h1}>
-                Mais oportunidades de vender para o governo. <span className={s.accent}>Menos tempo perdido com editais e burocracia.</span>
-              </h1>
-              <p className={s.heroLead}>
-                O Departamento Leve combina inteligência artificial, treinamento e apoio especializado para ajudar sua empresa a encontrar oportunidades de
-                licitação, analisar editais e preparar documentos com mais agilidade e organização.
-              </p>
-              <p className={s.heroSub}>
-                Uma solução pensada para MEIs, microempresas e pequenas empresas que querem entender melhor as licitações públicas e aproveitar novas oportunidades
-                de negócio.
-              </p>
-              <div className={s.ctaRow}>
-                <Cta kind="purchase" section="hero" size="lg">
-                  Quero comprar
-                </Cta>
-                <Cta kind="whatsapp" section="hero" size="lg">
-                  Quero falar com um consultor
-                </Cta>
-              </div>
-              <p className={s.trialNote}>
-                <IconInfo className={s.noteIcon} />
-                <span>
-                  Prefere conhecer antes de decidir? <a href="#teste-gratuito">Consulte as condições</a> para solicitar 7 dias de acesso gratuito com um consultor.
-                </span>
-              </p>
+          <div className={`${s.container} ${s.heroCenter}`}>
+            <p className={s.badge}>
+              <span>Inteligência artificial</span>
+              <span className={s.dot} aria-hidden="true">
+                •
+              </span>
+              <span>Gestão de licitações</span>
+              <span className={s.dot} aria-hidden="true">
+                •
+              </span>
+              <span className={s.badgeStrong}>Método LEVE</span>
+            </p>
+            <h1 id="hero-title" className={s.h1}>
+              Um departamento inteiro de licitações <span className={s.accent}>dentro da sua empresa.</span>
+            </h1>
+            <p className={s.heroLead}>
+              Encontre oportunidades, analise editais com IA, automatize a preparação de documentos e capacite sua equipe. Tudo em uma única plataforma.
+            </p>
+            <div className={`${s.ctaRow} ${s.ctaCenter}`}>
+              <Cta kind="trial" section="hero" size="lg" variant="primary">
+                Experimente por 7 dias
+              </Cta>
+              <a href="#plataforma" className={`${s.btn} ${s.btn_secondary} ${s.btn_lg}`}>
+                Conheça a plataforma
+              </a>
             </div>
+            <p className={s.trialNote}>
+              <IconInfo className={s.noteIcon} />
+              <span>
+                O acesso de teste é liberado por um consultor pelo WhatsApp. Prefere começar agora?{' '}
+                <a href={KIWIFY_URL} data-cta="purchase" data-section="hero_link">
+                  Compre direto pela Kiwify
+                </a>
+                .
+              </span>
+            </p>
+          </div>
+          <div className={`${s.container} ${s.heroDevice}`}>
+            <DeviceMockup />
+          </div>
+        </section>
 
-            {/* Ilustração conceitual (não é captura de tela do produto). Trocar por capturas reais quando disponíveis. */}
-            <div className={s.heroArt} aria-hidden="true">
-              <div className={s.artGlow} />
-              <div className={s.artDoc}>
-                <div className={s.artDocHead}>
-                  <span className={s.artDocIcon}>
-                    <IconDocSearch />
+        {/* SEU DEPARTAMENTO DE LICITAÇÕES COM IA */}
+        <section id="plataforma" className={`${s.section} ${s.light}`} aria-labelledby="plataforma-title">
+          <div className={s.container}>
+            <SectionHead
+              id="plataforma-title"
+              eyebrow="A plataforma"
+              title="Seu departamento de licitações com IA."
+              intro="As atividades que uma equipe de licitações executa no dia a dia, reunidas em um só lugar e apoiadas por inteligência artificial."
+            />
+            <div className={`${s.grid} ${s.grid3}`}>
+              {ATIVIDADES.map(({ icon: Icon, title, text }) => (
+                <article key={title} className={s.card}>
+                  <span className={`${s.iconBox} ${s.iconOrange}`}>
+                    <Icon />
                   </span>
-                  <span className={s.artBar} style={{ width: '46%' }} />
-                </div>
-                <span className={s.artLine} style={{ width: '92%' }} />
-                <span className={s.artLine} style={{ width: '84%' }} />
-                <span className={`${s.artLine} ${s.artHi}`} style={{ width: '70%' }} />
-                <span className={s.artLine} style={{ width: '88%' }} />
-                <span className={s.artLine} style={{ width: '60%' }} />
-                <span className={`${s.artLine} ${s.artHi}`} style={{ width: '78%' }} />
-                <span className={s.artLine} style={{ width: '90%' }} />
-                <span className={s.artLine} style={{ width: '52%' }} />
-              </div>
-              <div className={`${s.artChip} ${s.chipA}`}>
-                <IconSparkle /> Leitura com IA
-              </div>
-              <div className={`${s.artChip} ${s.chipB}`}>
-                <IconCheck /> Requisitos
-              </div>
-              <div className={`${s.artChip} ${s.chipC}`}>
-                <IconClock /> Prazos
-              </div>
-              <div className={`${s.artChip} ${s.chipD}`}>
-                <IconFileCheck /> Declarações
-              </div>
+                  <h3 className={s.h3}>{title}</h3>
+                  <p>{text}</p>
+                </article>
+              ))}
+            </div>
+            <p className={s.notice}>
+              <IconInfo className={s.noteIcon} />
+              <span>
+                A IA apoia a análise e a preparação dos materiais. A decisão de participar e a validação final dos documentos continuam com a sua empresa.
+              </span>
+            </p>
+            <div className={s.ctaRow}>
+              <Cta kind="purchase" section="plataforma" size="lg">
+                Quero comprar
+              </Cta>
+              <Cta kind="whatsapp" section="plataforma" size="lg" variant="secondaryLight">
+                Quero falar com um consultor
+              </Cta>
             </div>
           </div>
         </section>
 
-        {/* 3 — VÍDEO */}
-        <section id="video" className={`${s.section} ${s.light}`} aria-labelledby="video-title">
-          <div className={`${s.container} ${s.narrow}`}>
-            <SectionHead
-              id="video-title"
-              eyebrow="Vídeo de apresentação"
-              title="Conheça o Departamento Leve na prática"
-              intro="Veja como a tecnologia e a inteligência artificial podem ajudar sua empresa a organizar a participação em licitações públicas."
-              center
-            />
-            <VideoEmbed videoId={YOUTUBE_VIDEO_ID} title={VIDEO_TITLE} />
-            <div className={`${s.ctaRow} ${s.ctaCenter}`}>
-              <Cta kind="purchase" section="video" size="lg">
+        {/* MÉTODO LEVE — área valorizada */}
+        <section id="metodo" className={`${s.section} ${s.dark} ${s.metodo}`} aria-labelledby="metodo-title">
+          <div className={s.container}>
+            <div className={s.metodoHead}>
+              <div>
+                <p className={s.eyebrow}>Método LEVE</p>
+                <h2 id="metodo-title" className={s.h2}>
+                  Conhecimento para crescer.
+                </h2>
+                <p className={s.lead}>
+                  Ferramenta sem método não leva longe. O Método LEVE organiza o aprendizado em quatro trilhas de desenvolvimento para sua empresa evoluir no mercado
+                  público.
+                </p>
+              </div>
+              <div className={s.statCard}>
+                <p className={s.statNum}>+30</p>
+                <p className={s.statLabel}>aulas de conteúdo bônus</p>
+                <p className={s.statSub}>em videoaulas, incluídas na plataforma</p>
+              </div>
+            </div>
+
+            <ol className={s.trilhas}>
+              {TRILHAS.map(({ icon: Icon, title, text }, i) => (
+                <li key={title} className={s.trilha}>
+                  <span className={s.trilhaNum} aria-hidden="true">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <span className={`${s.iconBox} ${s.iconOrange}`}>
+                    <Icon />
+                  </span>
+                  <h3 className={s.h3}>
+                    <span className={s.srOnly}>Trilha {i + 1}: </span>
+                    {title}
+                  </h3>
+                  <p>{text}</p>
+                </li>
+              ))}
+            </ol>
+
+            {showMentor && (
+              <div className={s.mentor}>
+                {hasMentor ? (
+                  // eslint-disable-next-line @next/next/no-img-element -- foto estática em /public
+                  <img src={MENTOR.photo} alt={`Foto de ${MENTOR.name}`} className={s.mentorPhoto} width={320} height={320} loading="lazy" />
+                ) : (
+                  <Placeholder label="Foto do especialista (substituir)" className={s.mentorPhoto} />
+                )}
+                <div>
+                  <p className={s.eyebrow}>Quem conduz o método</p>
+                  {hasMentor ? (
+                    <>
+                      <h3 className={s.mentorName}>{MENTOR.name}</h3>
+                      {MENTOR.role && <p className={s.mentorRole}>{MENTOR.role}</p>}
+                      <p className={s.mentorBio}>{MENTOR.bio}</p>
+                    </>
+                  ) : (
+                    <>
+                      <h3 className={s.mentorName}>[Nome do especialista]</h3>
+                      <p className={s.mentorRole}>[Cargo / experiência]</p>
+                      <p className={s.mentorBio}>
+                        [Breve apresentação: trajetória em licitações, empresas atendidas, por que criou o Método LEVE.] Este bloco só aparece em preview até ser
+                        preenchido em content.ts.
+                      </p>
+                    </>
+                  )}
+                </div>
+              </div>
+            )}
+
+            <div className={s.ctaRow}>
+              <Cta kind="purchase" section="metodo" size="lg">
                 Quero comprar
               </Cta>
-              <Cta kind="whatsapp" section="video" size="lg" variant="secondaryLight">
+            </div>
+          </div>
+        </section>
+
+        {/* SUA OPERAÇÃO SOB CONTROLE */}
+        <section id="video" className={`${s.section} ${s.light}`} aria-labelledby="operacao-title">
+          <div className={s.container}>
+            <SectionHead
+              id="operacao-title"
+              eyebrow="Na prática"
+              title="Sua operação sob controle."
+              intro="Veja no vídeo como o Departamento Leve organiza a participação da sua empresa em licitações, da oportunidade aos documentos."
+              center
+            />
+            <div className={s.narrowBlock}>
+              <VideoEmbed videoId={YOUTUBE_VIDEO_ID} title={VIDEO_TITLE} />
+            </div>
+
+            <h3 className={`${s.h3} ${s.vantagensTitle}`}>Algumas vantagens de ganhar contratos públicos</h3>
+            <ul className={`${s.grid} ${s.grid3} ${s.vantagens}`}>
+              {VANTAGENS.map(({ icon: Icon, text }) => (
+                <li key={text} className={s.vantagem}>
+                  <span className={`${s.iconBox} ${s.iconOrange}`}>
+                    <Icon />
+                  </span>
+                  <span>{text}</span>
+                </li>
+              ))}
+            </ul>
+            <div className={`${s.ctaRow} ${s.ctaCenter}`}>
+              <Cta kind="purchase" section="operacao" size="lg">
+                Quero comprar
+              </Cta>
+              <Cta kind="whatsapp" section="operacao" size="lg" variant="secondaryLight">
                 Tenho dúvidas. Quero falar com um consultor
               </Cta>
             </div>
           </div>
         </section>
 
-        {/* 4 — PROBLEMA */}
-        <section className={`${s.section} ${s.dark}`} aria-labelledby="problema-title">
+        {/* COMPARATIVO DE CUSTO */}
+        <section id="investimento" className={`${s.section} ${s.dark}`} aria-labelledby="custo-title">
           <div className={s.container}>
             <SectionHead
-              id="problema-title"
-              title="Participar de licitações não precisa ser um processo tão complicado."
-              intro="Muitas empresas deixam de aproveitar oportunidades de vender para o governo porque não sabem por onde começar ou encontram dificuldades para lidar com editais, documentos e procedimentos."
+              id="custo-title"
+              eyebrow="Investimento"
+              title="Quanto custa estruturar um departamento de licitações?"
+              intro="Compare o salário base de uma equipe de analistas com a mensalidade do Departamento Leve."
+              center
             />
-            <div className={`${s.grid} ${s.grid4}`}>
-              {PROBLEMAS.map(({ icon: Icon, title, text }) => (
-                <article key={title} className={s.card}>
-                  <span className={s.iconBox}>
-                    <Icon />
-                  </span>
-                  <h3 className={s.h3}>{title}</h3>
-                  <p>{text}</p>
-                </article>
-              ))}
-            </div>
-            <p className={s.closing}>
-              O Departamento Leve reúne ferramentas de IA, treinamento e apoio especializado para ajudar você a enfrentar essas etapas com mais organização.
-            </p>
-          </div>
-        </section>
-
-        {/* 5 — SOLUÇÃO */}
-        <section id="o-que-esta-incluido" className={`${s.section} ${s.light}`} aria-labelledby="solucao-title">
-          <div className={s.container}>
-            <SectionHead
-              id="solucao-title"
-              eyebrow="O que está incluído"
-              title="Tecnologia e conhecimento trabalhando juntos para sua empresa."
-              intro="Com o Departamento Leve, você conta com recursos que apoiam diferentes etapas da participação em licitações, desde a identificação de oportunidades até a preparação de documentos."
-            />
-            <div className={`${s.grid} ${s.grid2}`}>
-              {SOLUCAO.map(({ icon: Icon, title, text }, i) => (
-                <article key={title} className={`${s.card} ${s.cardRow}`}>
-                  <span className={`${s.iconBox} ${s.iconOrange}`}>
-                    <Icon />
-                  </span>
-                  <div>
-                    <h3 className={s.h3}>
-                      <span className={s.num}>{i + 1}.</span> {title}
-                    </h3>
-                    <p>{text}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-            <p className={s.notice}>
-              <IconInfo className={s.noteIcon} />
-              <span>
-                A decisão de participar e a validação final dos documentos continuam sob responsabilidade da empresa. A tecnologia é uma ferramenta de apoio para
-                tornar o trabalho mais organizado e eficiente.
-              </span>
-            </p>
-          </div>
-        </section>
-
-        {/* 6 — COMO FUNCIONA */}
-        <section id="como-funciona" className={`${s.section} ${s.dark}`} aria-labelledby="como-title">
-          <div className={s.container}>
-            <SectionHead id="como-title" eyebrow="Como funciona" title="Da oportunidade à preparação para participar." />
-            <ol className={s.steps}>
-              {ETAPAS.map((e, i) => (
-                <li key={e.title} className={s.step}>
-                  <span className={s.stepNum} aria-hidden="true">
-                    {i + 1}
-                  </span>
-                  <h3 className={s.h3}>
-                    <span className={s.srOnly}>Etapa {i + 1}: </span>
-                    {e.title}
-                  </h3>
-                  <p>{e.text}</p>
-                </li>
-              ))}
-            </ol>
-            <p className={`${s.closing} ${s.center}`}>Tudo em um só lugar, com tecnologia e conhecimento para ajudar sua empresa a se organizar melhor.</p>
-            <div className={`${s.ctaRow} ${s.ctaCenter}`}>
-              <Cta kind="purchase" section="como_funciona" size="lg">
-                Quero comprar
-              </Cta>
-            </div>
-          </div>
-        </section>
-
-        {/* 7 — ASSISTENTES DE IA */}
-        <section className={`${s.section} ${s.light}`} aria-labelledby="assistentes-title">
-          <div className={s.container}>
-            <SectionHead
-              id="assistentes-title"
-              eyebrow="Diferencial"
-              title="Assistentes de IA para ajudar você em etapas importantes da licitação."
-              intro="Ferramentas para apoiar a elaboração de documentos administrativos, economizando tempo na organização das informações e na preparação dos textos."
-            />
-            <div className={`${s.grid} ${s.grid3}`}>
-              {ASSISTENTES.map(({ icon: Icon, title, text }) => (
-                <article key={title} className={`${s.card} ${s.cardAccent}`}>
-                  <span className={`${s.iconBox} ${s.iconOrange}`}>
-                    <Icon />
-                  </span>
-                  <h3 className={s.h3}>{title}</h3>
-                  <p>{text}</p>
-                </article>
-              ))}
-            </div>
-            <p className={s.notice}>
-              <IconInfo className={s.noteIcon} />
-              <span>
-                As respostas geradas por IA devem ser revisadas e validadas antes de qualquer utilização. A adequação jurídica e procedimental depende das
-                circunstâncias de cada licitação.
-              </span>
-            </p>
-          </div>
-        </section>
-
-        {/* 8 — TREINAMENTO */}
-        <section className={`${s.section} ${s.dark}`} aria-labelledby="treinamento-title">
-          <div className={`${s.container} ${s.split}`}>
-            <div>
-              <SectionHead
-                id="treinamento-title"
-                eyebrow="Treinamento em videoaulas"
-                title="Não basta ter a ferramenta. É importante saber como utilizá-la."
-                intro="O Departamento Leve também oferece treinamento em licitações por meio de videoaulas, para ajudar você a compreender melhor os procedimentos e aproveitar os recursos disponíveis."
-              />
-              <ul className={s.checks}>
-                {TREINAMENTO.map((t) => (
-                  <li key={t}>
-                    <IconCheck className={s.checkIcon} />
-                    {t}
-                  </li>
-                ))}
-              </ul>
-              <div className={s.ctaRow}>
-                <Cta kind="purchase" section="treinamento" size="lg">
-                  Quero conhecer o Departamento Leve
+            <div className={s.compare}>
+              <div className={s.compareCol}>
+                <p className={s.compareLabel}>Equipe própria</p>
+                <div className={s.compareRow}>
+                  <span>2 analistas de licitação</span>
+                  <strong>{brl(SALARIO_ANALISTA * 2)}/mês</strong>
+                </div>
+                <div className={s.compareRow}>
+                  <span>3 analistas de licitação</span>
+                  <strong>{brl(SALARIO_ANALISTA * 3)}/mês</strong>
+                </div>
+                <p className={s.compareNote}>Somente salário base. Encargos trabalhistas, benefícios, treinamento e ferramentas aumentam esse valor.</p>
+              </div>
+              <div className={`${s.compareCol} ${s.compareHi}`}>
+                <p className={s.compareLabel}>Departamento Leve</p>
+                <p className={s.comparePrice}>
+                  {brl(MENSALIDADE)}
+                  <span>/mês</span>
+                </p>
+                <ul className={s.checks}>
+                  {['Oportunidades e análise de editais com IA', 'Declarações e controle de certidões', 'Três assistentes de IA', 'Método LEVE com +30 aulas bônus'].map((t) => (
+                    <li key={t}>
+                      <IconCheck className={s.checkIcon} />
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+                <Cta kind="purchase" section="investimento" size="lg" className={s.compareBtn}>
+                  Quero comprar
                 </Cta>
               </div>
             </div>
-            {/* Ilustração conceitual de aulas em vídeo — sem títulos, módulos ou durações inventados. */}
-            <div className={s.lessonArt} aria-hidden="true">
-              <div className={s.lessonScreen}>
-                <span className={s.lessonPlay}>
-                  <IconPlay />
-                </span>
-                <span className={s.lessonProgress}>
-                  <span />
-                </span>
-              </div>
-              {[72, 58, 64].map((w, i) => (
-                <div key={i} className={s.lessonRow}>
-                  <span className={s.lessonDot}>{i === 0 ? <IconCheck /> : <IconGraduation />}</span>
-                  <span className={s.artBar} style={{ width: `${w}%` }} />
-                </div>
-              ))}
-            </div>
+            <p className={`${s.small} ${s.center}`}>
+              Referência salarial: {SALARIO_FONTE}. A plataforma apoia as atividades de licitação; a decisão e a validação continuam com a empresa. Valor da
+              mensalidade conforme o checkout oficial da Kiwify.
+            </p>
           </div>
         </section>
 
-        {/* 9 — PARA QUEM É */}
-        <section className={`${s.section} ${s.light}`} aria-labelledby="publico-title">
+        {/* CASES — somente reais e autorizados */}
+        {showCases && (
+          <section className={`${s.section} ${s.light}`} aria-labelledby="cases-title">
+            <div className={s.container}>
+              <SectionHead
+                id="cases-title"
+                eyebrow="Cases"
+                title="Contratos conquistados com o Departamento Leve."
+                intro="Obras e serviços de empresas que usam a plataforma para participar de licitações."
+              />
+              <div className={`${s.grid} ${s.grid3}`}>
+                {CASES.length > 0
+                  ? CASES.map((c) => (
+                      <article key={c.title} className={`${s.card} ${s.caseCard}`}>
+                        {/* eslint-disable-next-line @next/next/no-img-element -- foto estática em /public */}
+                        <img src={c.photo} alt={c.title} className={s.casePhoto} loading="lazy" />
+                        <div className={s.caseBody}>
+                          <h3 className={s.h3}>{c.title}</h3>
+                          <p className={s.caseOrg}>{c.org}</p>
+                          {c.description && <p>{c.description}</p>}
+                        </div>
+                      </article>
+                    ))
+                  : [1, 2, 3].map((n) => (
+                      <article key={n} className={`${s.card} ${s.caseCard}`}>
+                        <Placeholder label={`Foto da obra ${n} (substituir)`} className={s.casePhoto} />
+                        <div className={s.caseBody}>
+                          <h3 className={s.h3}>[Objeto do contrato]</h3>
+                          <p className={s.caseOrg}>[Órgão / cidade]</p>
+                        </div>
+                      </article>
+                    ))}
+              </div>
+              {CASES.length === 0 && <p className={s.small}>Seção visível só em preview até os cases reais serem adicionados em content.ts.</p>}
+            </div>
+          </section>
+        )}
+
+        {/* PARA QUEM É */}
+        <section className={`${s.section} ${showCases ? s.dark : s.light}`} aria-labelledby="publico-title">
           <div className={s.container}>
             <SectionHead id="publico-title" eyebrow="Para quem é" title="Uma solução para empresas que querem ampliar suas oportunidades." />
             <div className={`${s.grid} ${s.grid3}`}>
@@ -555,78 +561,11 @@ export default function Home() {
                 </article>
               ))}
             </div>
-            <p className={s.closing}>
-              Independentemente do estágio em que sua empresa esteja, o primeiro passo é conhecer os recursos disponíveis e avaliar como eles se encaixam na sua
-              rotina.
-            </p>
           </div>
         </section>
 
-        {/* 10 — BENEFÍCIOS */}
-        <section className={`${s.section} ${s.dark}`} aria-labelledby="beneficios-title">
-          <div className={s.container}>
-            <SectionHead id="beneficios-title" eyebrow="Benefícios" title="Menos trabalho operacional. Mais organização para avaliar oportunidades." />
-            <ul className={`${s.grid} ${s.grid3} ${s.benefits}`}>
-              {BENEFICIOS.map(({ icon: Icon, text }) => (
-                <li key={text} className={s.benefit}>
-                  <span className={`${s.iconBox} ${s.iconOrange}`}>
-                    <Icon />
-                  </span>
-                  <span>{text}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        {/* 11 — CREDIBILIDADE
-            Sem provas sociais fornecidas, a seção apresenta caminhos reais para
-            conhecer o produto. Depoimentos, estudos de caso ou capturas reais
-            entram aqui somente quando autorizados e documentados. */}
-        <section className={`${s.section} ${s.light}`} aria-labelledby="conheca-title">
-          <div className={s.container}>
-            <SectionHead
-              id="conheca-title"
-              title="Conheça a solução antes de tomar sua decisão."
-              intro="Veja a apresentação oficial, tire suas dúvidas com a equipe e consulte as condições diretamente no checkout."
-            />
-            <div className={`${s.grid} ${s.grid3}`}>
-              <article className={s.card}>
-                <span className={s.iconBox}>
-                  <IconPlay />
-                </span>
-                <h3 className={s.h3}>Assista à apresentação</h3>
-                <p>O vídeo oficial mostra como a plataforma reúne oportunidades, análise de editais com IA e treinamento.</p>
-                <a href="#video" className={s.textLink}>
-                  Ver o vídeo
-                </a>
-              </article>
-              <article className={s.card}>
-                <span className={s.iconBox}>
-                  <IconMessageQuestion />
-                </span>
-                <h3 className={s.h3}>Converse com um consultor</h3>
-                <p>Explique o momento da sua empresa e entenda se os recursos fazem sentido para a sua rotina.</p>
-                <a href={WHATSAPP_GERAL_URL} className={s.textLink} data-cta="whatsapp" data-section="conheca" target="_blank" rel="noopener noreferrer">
-                  Falar pelo WhatsApp<span className={s.srOnly}> (abre em nova aba)</span>
-                </a>
-              </article>
-              <article className={s.card}>
-                <span className={s.iconBox}>
-                  <IconInfo />
-                </span>
-                <h3 className={s.h3}>Consulte valor e condições</h3>
-                <p>Preço e condições comerciais ficam disponíveis no checkout oficial da Kiwify, sem cadastro prévio.</p>
-                <a href={KIWIFY_URL} className={s.textLink} data-cta="purchase" data-section="conheca">
-                  Ir para o checkout
-                </a>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        {/* 12 — TESTE GRATUITO */}
-        <section id="teste-gratuito" className={`${s.section} ${s.dark} ${s.sectionTight}`} aria-labelledby="teste-title">
+        {/* TESTE GRATUITO */}
+        <section id="teste-gratuito" className={`${s.section} ${showCases ? s.light : s.dark} ${s.sectionTight}`} aria-labelledby="teste-title">
           <div className={s.container}>
             <div className={s.trialBox}>
               <div>
@@ -640,14 +579,14 @@ export default function Home() {
                 <p className={s.small}>O acesso de teste depende do contato com o consultor e da liberação correspondente. Não é automático pela página.</p>
               </div>
               <Cta kind="trial" section="teste_gratuito" size="lg">
-                Quero conhecer a plataforma
+                Experimente por 7 dias
               </Cta>
             </div>
           </div>
         </section>
 
-        {/* 13 — FAQ */}
-        <section id="duvidas" className={`${s.section} ${s.light}`} aria-labelledby="faq-title">
+        {/* FAQ */}
+        <section id="duvidas" className={`${s.section} ${showCases ? s.dark : s.light}`} aria-labelledby="faq-title">
           <div className={`${s.container} ${s.narrow}`}>
             <SectionHead id="faq-title" eyebrow="Dúvidas frequentes" title="Tire suas dúvidas sobre o Departamento Leve." center />
             <div className={s.faq}>
@@ -664,15 +603,13 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 14 — CTA FINAL */}
+        {/* CTA FINAL */}
         <section id="cta-final" className={`${s.section} ${s.dark} ${s.final}`} aria-labelledby="final-title">
           <div className={`${s.container} ${s.narrow} ${s.center}`}>
             <h2 id="final-title" className={s.h2}>
-              Sua empresa pode dar o próximo passo nas licitações públicas.
+              Tenha um departamento de licitações completo, sem montar uma equipe do zero.
             </h2>
-            <p className={s.lead}>
-              Conheça uma solução que reúne oportunidades, inteligência artificial e treinamento para ajudar você a participar de licitações com mais organização.
-            </p>
+            <p className={s.lead}>Oportunidades, inteligência artificial e o Método LEVE em uma única plataforma.</p>
             <div className={`${s.ctaRow} ${s.ctaCenter}`}>
               <Cta kind="purchase" section="cta_final" size="lg">
                 Quero comprar
@@ -688,7 +625,7 @@ export default function Home() {
         </section>
       </main>
 
-      {/* 15 — RODAPÉ */}
+      {/* RODAPÉ */}
       <footer className={s.footer}>
         <div className={`${s.container} ${s.footerGrid}`}>
           <div>
@@ -698,7 +635,7 @@ export default function Home() {
               </span>
               <span className={s.brandName}>Departamento Leve</span>
             </p>
-            <p className={s.footerText}>Inteligência artificial, oportunidades de licitação e treinamento em um só lugar para MEIs, microempresas e pequenas empresas.</p>
+            <p className={s.footerText}>Inteligência artificial, gestão de licitações e o Método LEVE em um só lugar para MEIs, microempresas e pequenas empresas.</p>
           </div>
           <nav aria-label="Links do rodapé" className={s.footerLinks}>
             <a href={WHATSAPP_GERAL_URL} data-cta="whatsapp" data-section="rodape" target="_blank" rel="noopener noreferrer">
