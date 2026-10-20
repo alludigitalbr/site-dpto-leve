@@ -16,18 +16,36 @@ export const SALARIO_FONTE = 'Vagas.com.br, média salarial de analista de licit
 export type Mentor = {
   name: string
   role: string
-  bio: string
+  // Um parágrafo por item
+  bio: string[]
   // Caminho em /public, ex.: '/img/mentor.jpg'
   photo: string
 }
 
-// Apresentação de quem conduz o Método LEVE. Preencher com dados e foto reais.
+// Apresentação de quem conduz o Método LEVE (texto e foto enviados pelo cliente).
 export const MENTOR: Mentor = {
-  name: '',
-  role: '',
-  bio: '',
-  photo: '',
+  name: 'Eliézer Dias',
+  role: 'Engenheiro Civil, empresário, palestrante e especialista em licitações públicas.',
+  bio: [
+    'Casado e pai de três filhos, Eliézer Dias é apaixonado por empreendedorismo e por transformar oportunidades em resultados.',
+    'Com experiência no mercado de obras públicas, dedica-se a compartilhar conhecimento e ajudar empresas de todos os portes a conquistarem contratos com o governo.',
+    'Sua missão é simplificar as licitações, tornando o mercado público mais acessível, estratégico e lucrativo para os empreendedores brasileiros.',
+  ],
+  photo: '/img/eliezer-dias.jpg',
 }
+
+export type Testimonial = {
+  quote: string
+  author: string
+}
+
+// Depoimentos reais e autorizados de clientes.
+export const TESTIMONIALS: Testimonial[] = [
+  {
+    quote: 'Com o Departamento LEVE, consegui ganhar contratos que antes achava serem impossíveis. Ficou muito mais simples e fácil!',
+    author: 'Larini Arquitetura',
+  },
+]
 
 export type Case = {
   // Foto real da obra/entrega, em /public, ex.: '/img/cases/ponte.jpg'

@@ -26,7 +26,7 @@ import {
   IconTarget,
   IconHardHat,
 } from '@/components/landing/Icons'
-import { CASES, MENSALIDADE, MENTOR, SALARIO_ANALISTA, SALARIO_FONTE, SHOW_PLACEHOLDERS } from '@/components/landing/content'
+import { CASES, MENSALIDADE, MENTOR, SALARIO_ANALISTA, SALARIO_FONTE, SHOW_PLACEHOLDERS, TESTIMONIALS } from '@/components/landing/content'
 import { KIWIFY_URL, LOGIN_URL, PRIVACY_URL, SITE_URL, TERMS_URL, WHATSAPP_GERAL_URL, YOUTUBE_VIDEO_ID } from '@/components/landing/links'
 import s from '@/components/landing/landing.module.css'
 
@@ -226,7 +226,6 @@ function Placeholder({ label, className }: { label: string; className?: string }
 export default function Home() {
   const year = new Date().getFullYear()
   const hasMentor = Boolean(MENTOR.name && MENTOR.photo)
-  const showMentor = hasMentor || SHOW_PLACEHOLDERS
   const showCases = CASES.length > 0 || SHOW_PLACEHOLDERS
 
   return (
@@ -385,32 +384,19 @@ export default function Home() {
               ))}
             </ol>
 
-            {showMentor && (
+            {hasMentor && (
               <div className={s.mentor}>
-                {hasMentor ? (
-                  // eslint-disable-next-line @next/next/no-img-element -- foto estática em /public
-                  <img src={MENTOR.photo} alt={`Foto de ${MENTOR.name}`} className={s.mentorPhoto} width={320} height={320} loading="lazy" />
-                ) : (
-                  <Placeholder label="Foto do especialista (substituir)" className={s.mentorPhoto} />
-                )}
+                {/* eslint-disable-next-line @next/next/no-img-element -- foto estática em /public */}
+                <img src={MENTOR.photo} alt={`Foto de ${MENTOR.name}`} className={s.mentorPhoto} width={720} height={960} loading="lazy" />
                 <div>
-                  <p className={s.eyebrow}>Quem conduz o método</p>
-                  {hasMentor ? (
-                    <>
-                      <h3 className={s.mentorName}>{MENTOR.name}</h3>
-                      {MENTOR.role && <p className={s.mentorRole}>{MENTOR.role}</p>}
-                      <p className={s.mentorBio}>{MENTOR.bio}</p>
-                    </>
-                  ) : (
-                    <>
-                      <h3 className={s.mentorName}>[Nome do especialista]</h3>
-                      <p className={s.mentorRole}>[Cargo / experiência]</p>
-                      <p className={s.mentorBio}>
-                        [Breve apresentação: trajetória em licitações, empresas atendidas, por que criou o Método LEVE.] Este bloco só aparece em preview até ser
-                        preenchido em content.ts.
-                      </p>
-                    </>
-                  )}
+                  <p className={s.eyebrow}>Quem conduz o Método LEVE</p>
+                  <h3 className={s.mentorName}>Conheça {MENTOR.name}</h3>
+                  <p className={s.mentorRole}>{MENTOR.role}</p>
+                  {MENTOR.bio.map((p) => (
+                    <p key={p} className={s.mentorBio}>
+                      {p}
+                    </p>
+                  ))}
                 </div>
               </div>
             )}
@@ -508,46 +494,60 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CASES — somente reais e autorizados */}
-        {showCases && (
-          <section className={`${s.section} ${s.light}`} aria-labelledby="cases-title">
-            <div className={s.container}>
-              <SectionHead
-                id="cases-title"
-                eyebrow="Cases"
-                title="Contratos conquistados com o Departamento Leve."
-                intro="Obras e serviços de empresas que usam a plataforma para participar de licitações."
-              />
-              <div className={`${s.grid} ${s.grid3}`}>
-                {CASES.length > 0
-                  ? CASES.map((c) => (
-                      <article key={c.title} className={`${s.card} ${s.caseCard}`}>
-                        {/* eslint-disable-next-line @next/next/no-img-element -- foto estática em /public */}
-                        <img src={c.photo} alt={c.title} className={s.casePhoto} loading="lazy" />
-                        <div className={s.caseBody}>
-                          <h3 className={s.h3}>{c.title}</h3>
-                          <p className={s.caseOrg}>{c.org}</p>
-                          {c.description && <p>{c.description}</p>}
-                        </div>
-                      </article>
-                    ))
-                  : [1, 2, 3].map((n) => (
-                      <article key={n} className={`${s.card} ${s.caseCard}`}>
-                        <Placeholder label={`Foto da obra ${n} (substituir)`} className={s.casePhoto} />
-                        <div className={s.caseBody}>
-                          <h3 className={s.h3}>[Objeto do contrato]</h3>
-                          <p className={s.caseOrg}>[Órgão / cidade]</p>
-                        </div>
-                      </article>
-                    ))}
-              </div>
-              {CASES.length === 0 && <p className={s.small}>Seção visível só em preview até os cases reais serem adicionados em content.ts.</p>}
-            </div>
-          </section>
-        )}
+        {/* RESULTADOS — depoimentos e cases reais e autorizados */}
+        <section className={`${s.section} ${s.light}`} aria-labelledby="resultados-title">
+          <div className={s.container}>
+            <SectionHead
+              id="resultados-title"
+              eyebrow="Resultados"
+              title="Quem usa, conquista contratos."
+              intro="Empresas que usam o Departamento Leve para participar de licitações."
+            />
+            {TESTIMONIALS.map((d) => (
+              <figure key={d.author} className={s.testimonial}>
+                <span className={s.quoteMark} aria-hidden="true">
+                  “
+                </span>
+                <blockquote>
+                  <p>{d.quote}</p>
+                </blockquote>
+                <figcaption>{d.author}</figcaption>
+              </figure>
+            ))}
+            {showCases && (
+              <>
+                <h3 className={`${s.h3} ${s.casesTitle}`}>Contratos conquistados com o Departamento Leve</h3>
+                <div className={`${s.grid} ${s.grid3}`}>
+                  {CASES.length > 0
+                    ? CASES.map((c) => (
+                        <article key={c.title} className={`${s.card} ${s.caseCard}`}>
+                          {/* eslint-disable-next-line @next/next/no-img-element -- foto estática em /public */}
+                          <img src={c.photo} alt={c.title} className={s.casePhoto} loading="lazy" />
+                          <div className={s.caseBody}>
+                            <h4 className={s.h3}>{c.title}</h4>
+                            <p className={s.caseOrg}>{c.org}</p>
+                            {c.description && <p>{c.description}</p>}
+                          </div>
+                        </article>
+                      ))
+                    : [1, 2, 3].map((n) => (
+                        <article key={n} className={`${s.card} ${s.caseCard}`}>
+                          <Placeholder label={`Foto da obra ${n} (substituir)`} className={s.casePhoto} />
+                          <div className={s.caseBody}>
+                            <h4 className={s.h3}>[Objeto do contrato]</h4>
+                            <p className={s.caseOrg}>[Órgão / cidade]</p>
+                          </div>
+                        </article>
+                      ))}
+                </div>
+                {CASES.length === 0 && <p className={s.small}>Cases visíveis só em preview até as fotos reais serem adicionadas em content.ts.</p>}
+              </>
+            )}
+          </div>
+        </section>
 
         {/* PARA QUEM É */}
-        <section className={`${s.section} ${showCases ? s.dark : s.light}`} aria-labelledby="publico-title">
+        <section className={`${s.section} ${s.dark}`} aria-labelledby="publico-title">
           <div className={s.container}>
             <SectionHead id="publico-title" eyebrow="Para quem é" title="Uma solução para empresas que querem ampliar suas oportunidades." />
             <div className={`${s.grid} ${s.grid3}`}>
@@ -565,7 +565,7 @@ export default function Home() {
         </section>
 
         {/* TESTE GRATUITO */}
-        <section id="teste-gratuito" className={`${s.section} ${showCases ? s.light : s.dark} ${s.sectionTight}`} aria-labelledby="teste-title">
+        <section id="teste-gratuito" className={`${s.section} ${s.light} ${s.sectionTight}`} aria-labelledby="teste-title">
           <div className={s.container}>
             <div className={s.trialBox}>
               <div>
@@ -586,7 +586,7 @@ export default function Home() {
         </section>
 
         {/* FAQ */}
-        <section id="duvidas" className={`${s.section} ${showCases ? s.dark : s.light}`} aria-labelledby="faq-title">
+        <section id="duvidas" className={`${s.section} ${s.dark}`} aria-labelledby="faq-title">
           <div className={`${s.container} ${s.narrow}`}>
             <SectionHead id="faq-title" eyebrow="Dúvidas frequentes" title="Tire suas dúvidas sobre o Departamento Leve." center />
             <div className={s.faq}>

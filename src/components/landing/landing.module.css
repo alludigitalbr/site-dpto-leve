@@ -973,11 +973,15 @@
 }
 
 .mentorPhoto {
+  display: block;
   width: 100%;
-  max-width: 240px;
-  aspect-ratio: 1;
+  max-width: 280px;
+  height: auto;
+  aspect-ratio: 3 / 4;
   object-fit: cover;
+  object-position: top center;
   border-radius: 16px;
+  background: #fff;
   border: 2px solid rgb(249 115 22 / 0.6);
 }
 
@@ -1112,6 +1116,54 @@
 .page .compareBtn {
   width: 100%;
   margin-top: 24px;
+}
+
+/* ---------- Depoimentos ---------- */
+.page .testimonial {
+  position: relative;
+  max-width: 820px;
+  margin: 0 0 16px;
+  padding: 32px 28px 28px 28px;
+  border-radius: 18px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--orange);
+  box-shadow: 0 1px 2px rgb(20 33 47 / 0.04), 0 12px 32px -20px rgb(20 33 47 / 0.2);
+}
+
+.quoteMark {
+  position: absolute;
+  top: -6px;
+  right: 22px;
+  font-size: 96px;
+  line-height: 1;
+  font-weight: 800;
+  color: rgb(249 115 22 / 0.2);
+}
+
+.page .testimonial blockquote {
+  margin: 0;
+}
+
+.page .testimonial blockquote p {
+  font-size: clamp(19px, 3.4vw, 24px);
+  line-height: 1.45;
+  font-weight: 650;
+}
+
+.page .testimonial figcaption {
+  margin-top: 16px;
+  font-weight: 700;
+  color: var(--link);
+}
+
+.page .testimonial figcaption::before {
+  content: '— ';
+}
+
+.page .casesTitle {
+  margin: 48px 0 20px;
+  font-size: 22px;
 }
 
 /* ---------- Cases ---------- */
@@ -1390,8 +1442,8 @@
   }
 
   .mentor {
-    grid-template-columns: 200px 1fr;
-    gap: 32px;
+    grid-template-columns: 240px 1fr;
+    gap: 36px;
     padding: 32px;
   }
 }
