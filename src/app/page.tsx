@@ -26,7 +26,7 @@ import {
   IconTarget,
   IconHardHat,
 } from '@/components/landing/Icons'
-import { CASES, MENSALIDADE, MENTOR, SALARIO_ANALISTA, SALARIO_FONTE, SHOW_PLACEHOLDERS, TESTIMONIALS } from '@/components/landing/content'
+import { CASES, MENSALIDADE, MENTOR, SALARIO_ANALISTA, RESULT_STATS, SALARIO_FONTE, SHOW_PLACEHOLDERS, TESTIMONIALS } from '@/components/landing/content'
 import { KIWIFY_URL, LOGIN_URL, PRIVACY_URL, SITE_URL, TERMS_URL, WHATSAPP_GERAL_URL, YOUTUBE_VIDEO_ID } from '@/components/landing/links'
 import s from '@/components/landing/landing.module.css'
 
@@ -383,7 +383,9 @@ export default function Home() {
                   </span>
                   <h3 className={s.h3}>
                     <span className={s.srOnly}>Trilha {i + 1}: </span>
-                    {title}
+                    {/* As iniciais formam L-E-V-E */}
+                    <span className={s.leveLetter}>{title[0]}</span>
+                    {title.slice(1)}
                   </h3>
                   <p>{text}</p>
                 </li>
@@ -509,6 +511,15 @@ export default function Home() {
               title="Quem usa, conquista contratos."
               intro="Empresas que usam o Departamento Leve para participar de licitações."
             />
+            <ul className={s.results}>
+              {RESULT_STATS.map((r) => (
+                <li key={r.label} className={s.result}>
+                  <p className={s.resultNum}>{r.value}</p>
+                  <p className={s.resultLabel}>{r.label}</p>
+                  {r.detail && <p className={s.resultDetail}>{r.detail}</p>}
+                </li>
+              ))}
+            </ul>
             {TESTIMONIALS.map((d) => (
               <figure key={d.author} className={s.testimonial}>
                 <span className={s.quoteMark} aria-hidden="true">
@@ -613,7 +624,7 @@ export default function Home() {
         <section id="cta-final" className={`${s.section} ${s.dark} ${s.final}`} aria-labelledby="final-title">
           <div className={`${s.container} ${s.narrow} ${s.center}`}>
             <h2 id="final-title" className={s.h2}>
-              Tenha um departamento de licitações completo, sem montar uma equipe do zero.
+              Tenha um departamento de licitações completo, fácil e acessível!
             </h2>
             <p className={s.lead}>Oportunidades, inteligência artificial e o Método LEVE em uma única plataforma.</p>
             <div className={`${s.ctaRow} ${s.ctaCenter}`}>

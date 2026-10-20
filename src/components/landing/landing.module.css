@@ -1127,6 +1127,54 @@
   margin-top: 24px;
 }
 
+/* Iniciais das trilhas (L-E-V-E) */
+.leveLetter {
+  color: var(--orange);
+  font-size: 1.7em;
+  font-weight: 850;
+  line-height: 1;
+  margin-right: 1px;
+}
+
+/* ---------- Números de resultado ---------- */
+.results {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px;
+  display: grid;
+  gap: 16px;
+}
+
+.result {
+  padding: 24px;
+  border-radius: 18px;
+  background: var(--d-bg);
+  color: var(--d-text);
+  border: 1px solid var(--d-border);
+  border-top: 3px solid var(--orange);
+}
+
+.resultNum {
+  font-size: clamp(38px, 8vw, 52px);
+  font-weight: 850;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--orange);
+}
+
+.page .resultLabel {
+  margin-top: 10px;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.page .resultDetail {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--d-muted);
+}
+
 /* ---------- Depoimentos ---------- */
 .page .testimonial {
   position: relative;
@@ -1534,6 +1582,10 @@
   .nav {
     display: flex;
     gap: 28px;
+  }
+
+  .results {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .loginLink {

@@ -34,6 +34,29 @@ export const MENTOR: Mentor = {
   photo: '/img/eliezer-dias.jpg',
 }
 
+export type ResultStat = {
+  value: string
+  label: string
+  detail?: string
+}
+
+// Números informados pelo cliente (out/2026). Atualizar quando ele enviar novos dados.
+export const RESULT_STATS: ResultStat[] = [
+  {
+    value: '+R$ 20 mi',
+    label: 'em contratos ganhos com o Departamento Leve em 2026',
+  },
+  {
+    value: '6x',
+    label: 'mais rápido para montar a licitação',
+  },
+  {
+    value: '~450',
+    label: 'oportunidades por dia só na construção civil',
+    detail: 'Projetos, demolição, reforma, construção, instalação e manutenção.',
+  },
+]
+
 export type Testimonial = {
   quote: string
   author: string
