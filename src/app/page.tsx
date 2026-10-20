@@ -359,10 +359,16 @@ export default function Home() {
                   público.
                 </p>
               </div>
-              <div className={s.statCard}>
-                <p className={s.statNum}>+30</p>
-                <p className={s.statLabel}>aulas de conteúdo bônus</p>
-                <p className={s.statSub}>em videoaulas, incluídas na plataforma</p>
+              <div className={s.stats}>
+                <div className={s.statCard}>
+                  <p className={s.statNum}>+200</p>
+                  <p className={s.statLabel}>alunos formados em licitação</p>
+                </div>
+                <div className={s.statCard}>
+                  <p className={s.statNum}>+30</p>
+                  <p className={s.statLabel}>aulas de conteúdo bônus</p>
+                  <p className={s.statSub}>em videoaulas, incluídas na plataforma</p>
+                </div>
               </div>
             </div>
 

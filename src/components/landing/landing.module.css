@@ -897,16 +897,22 @@
   font-size: clamp(30px, 6.4vw, 48px);
 }
 
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  align-self: end;
+}
+
 .statCard {
-  align-self: start;
-  padding: 26px 28px;
+  padding: 22px 20px;
   border-radius: 18px;
   background: linear-gradient(140deg, rgb(249 115 22 / 0.18), rgb(249 115 22 / 0.04));
   border: 1px solid rgb(249 115 22 / 0.45);
 }
 
 .statNum {
-  font-size: clamp(48px, 10vw, 68px);
+  font-size: clamp(38px, 9vw, 58px);
   font-weight: 850;
   line-height: 1;
   letter-spacing: -0.03em;
@@ -915,7 +921,8 @@
 
 .page .statLabel {
   margin-top: 8px;
-  font-size: 19px;
+  font-size: 16px;
+  line-height: 1.35;
   font-weight: 700;
 }
 
@@ -1540,7 +1547,7 @@
   }
 
   .metodoHead {
-    grid-template-columns: 1fr 300px;
+    grid-template-columns: 1fr 460px;
     gap: 48px;
     align-items: end;
   }
