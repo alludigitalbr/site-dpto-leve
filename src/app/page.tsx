@@ -431,7 +431,7 @@ export default function Home() {
                 {/* eslint-disable-next-line @next/next/no-img-element -- foto estática em /public */}
                 <img src={MENTOR.photo} alt={`Foto de ${MENTOR.name}`} className={s.mentorPhoto} width={720} height={960} loading="lazy" />
                 <div>
-                  <p className={s.eyebrow}>Quem conduz o Método LEVE</p>
+                  <p className={s.eyebrow}>Quem ministra o Treinamento LEVE?</p>
                   <h3 className={s.mentorName}>Conheça {MENTOR.name}</h3>
                   <p className={s.mentorRole}>{MENTOR.role}</p>
                   {MENTOR.bio.map((p) => (
@@ -439,6 +439,7 @@ export default function Home() {
                       {p}
                     </p>
                   ))}
+                  <p className={s.mentorClosing}>{MENTOR.closing}</p>
                 </div>
               </div>
             )}
@@ -554,17 +555,26 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-            {TESTIMONIALS.map((d) => (
-              <figure key={d.author} className={s.testimonial}>
-                <span className={s.quoteMark} aria-hidden="true">
-                  “
-                </span>
-                <blockquote>
-                  <p>{d.quote}</p>
-                </blockquote>
-                <figcaption>{d.author}</figcaption>
-              </figure>
-            ))}
+            <div className={s.testimonials}>
+              {TESTIMONIALS.map((d) => (
+                <figure key={d.author} className={s.testimonial}>
+                  <span className={s.quoteMark} aria-hidden="true">
+                    “
+                  </span>
+                  <blockquote>
+                    <p>{d.quote}</p>
+                  </blockquote>
+                  <figcaption>
+                    <span className={s.testimonialAuthor}>{d.author}</span>
+                    {d.role && <span className={s.testimonialRole}>{d.role}</span>}
+                  </figcaption>
+                  {d.logo && (
+                    // eslint-disable-next-line @next/next/no-img-element -- logomarca estática em /public
+                    <img src={d.logo} alt={`Logomarca ${d.author}`} className={s.testimonialLogo} loading="lazy" />
+                  )}
+                </figure>
+              ))}
+            </div>
             {showCases && (
               <>
                 <h3 className={`${s.h3} ${s.casesTitle}`}>Contratos conquistados com o Departamento Leve</h3>

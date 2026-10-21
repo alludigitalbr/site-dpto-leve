@@ -14,7 +14,7 @@ export default function OpengraphImage() {
         flexDirection: 'column',
         justifyContent: 'space-between',
         padding: 72,
-        background: '#0D1B2A',
+        background: '#10233a',
         color: '#F0F4F8',
         fontFamily: 'sans-serif',
       }}
@@ -28,8 +28,8 @@ export default function OpengraphImage() {
             alignItems: 'center',
             justifyContent: 'center',
             borderRadius: 16,
-            border: '3px solid #F97316',
-            color: '#F97316',
+            border: '3px solid #f7822a',
+            color: '#f7822a',
             fontSize: 30,
             fontWeight: 900,
           }}
@@ -46,7 +46,7 @@ export default function OpengraphImage() {
           Inteligência artificial • Gestão de licitações • Método LEVE
         </div>
       </div>
-      <div style={{ display: 'flex', height: 8, width: 160, borderRadius: 4, background: '#F97316' }} />
+      <div style={{ display: 'flex', height: 8, width: 160, borderRadius: 4, background: '#f7822a' }} />
     </div>,
     { ...size }
   )
