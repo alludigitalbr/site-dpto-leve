@@ -299,13 +299,13 @@
   border-color: var(--l-muted);
 }
 
-.page .btn_onOrange {
+.page .btn_white {
   background: #fff;
   color: #c2410c;
   box-shadow: 0 8px 22px -10px rgb(0 0 0 / 0.45);
 }
 
-.page .btn_onOrange:hover {
+.page .btn_white:hover {
   background: #fff7ed;
 }
 

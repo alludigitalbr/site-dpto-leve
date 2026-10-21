@@ -289,7 +289,7 @@ export default function Home() {
               <Cta kind="trial" section="hero" size="lg" variant="primary">
                 Experimente por 7 dias
               </Cta>
-              <a href="#plataforma" className={`${s.btn} ${s.btn_secondary} ${s.btn_lg}`}>
+              <a href="#plataforma" className={`${s.btn} ${s.btn_white} ${s.btn_lg}`}>
                 Conheça a plataforma
               </a>
             </div>
@@ -334,7 +334,7 @@ export default function Home() {
                   Treinamento completo em licitações
                   <span className={s.bandIncluso}>Incluso</span>
                 </p>
-                <Cta kind="purchase" section="faixa" size="lg" variant="onOrange">
+                <Cta kind="purchase" section="faixa" size="lg" variant="white">
                   Quero comprar
                 </Cta>
               </div>
@@ -629,7 +629,7 @@ export default function Home() {
                 </p>
                 <p className={s.small}>O acesso de teste depende do contato com o consultor e da liberação correspondente. Não é automático pela página.</p>
               </div>
-              <Cta kind="trial" section="teste_gratuito" size="lg">
+              <Cta kind="trial" section="teste_gratuito" size="lg" variant="white">
                 Experimente por 7 dias
               </Cta>
             </div>
