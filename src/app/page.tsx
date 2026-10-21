@@ -9,6 +9,7 @@ import {
   IconCalendar,
   IconCheck,
   IconFileCheck,
+  IconGraduation,
   IconInfo,
   IconLayers,
   IconScale,
@@ -305,6 +306,39 @@ export default function Home() {
           </div>
           <div className={`${s.container} ${s.heroDevice}`}>
             <DeviceMockup />
+          </div>
+        </section>
+
+        {/* FAIXA DE DESTAQUE — ensino + IA */}
+        <section className={s.band} aria-labelledby="faixa-title">
+          <div className={s.container}>
+            <h2 id="faixa-title" className={s.srOnly}>
+              Treinamento e inteligência artificial para licitações
+            </h2>
+            <div className={s.bandPair}>
+              <p className={s.bandItem}>
+                <span className={s.bandAsk}>Não sabe fazer licitações?</span>
+                <strong className={s.bandAnswer}>Nós ensinamos.</strong>
+              </p>
+              <span className={s.bandDivider} aria-hidden="true" />
+              <p className={s.bandItem}>
+                <span className={s.bandAsk}>Já sabe?</span>
+                <strong className={s.bandAnswer}>Nossa IA ajuda você a ganhar produtividade.</strong>
+              </p>
+            </div>
+            <div className={s.bandFoot}>
+              <p className={s.bandSub}>O Departamento LEVE capacita sua empresa a disputar contratos públicos com mais eficiência!</p>
+              <div className={s.bandActions}>
+                <p className={s.bandBadge}>
+                  <IconGraduation className={s.bandBadgeIcon} />
+                  Treinamento completo em licitações
+                  <span className={s.bandIncluso}>Incluso</span>
+                </p>
+                <Cta kind="purchase" section="faixa" size="lg" variant="onOrange">
+                  Quero comprar
+                </Cta>
+              </div>
+            </div>
           </div>
         </section>
 

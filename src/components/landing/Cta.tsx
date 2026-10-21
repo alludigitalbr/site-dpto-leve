@@ -14,7 +14,7 @@ type Props = {
   kind: Kind
   section: string
   children: React.ReactNode
-  variant?: 'primary' | 'secondary' | 'secondaryLight' | 'ghost'
+  variant?: 'primary' | 'secondary' | 'secondaryLight' | 'onOrange'
   size?: 'md' | 'lg' | 'sm'
   className?: string
 }
