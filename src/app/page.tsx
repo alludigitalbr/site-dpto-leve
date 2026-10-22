@@ -179,6 +179,10 @@ const FAQ = [
     q: 'Quanto custa o Departamento Leve?',
     a: `A assinatura custa ${brl(MENSALIDADE)} por mês. O valor e as condições atualizadas ficam no checkout oficial da Kiwify.`,
   },
+  {
+    q: 'Existe fidelidade ou prazo mínimo de contratação?',
+    a: 'Não! No Departamento LEVE, você tem total liberdade. Não existe fidelidade nem prazo mínimo de permanência. Você pode cancelar sua assinatura a qualquer momento, sem multa ou burocracia. Sem contratos que prendem, sem surpresas e sem armadilhas!',
+  },
 ]
 
 // Dados estruturados só com fatos reais: nome, site e as perguntas da página.
