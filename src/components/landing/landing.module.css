@@ -2,9 +2,9 @@
    seções escuras (--d-*) e claras (--l-*) alternadas. */
 .page {
   --d-bg: #10233a;
-  --d-card: #182c44;
-  --d-field: #213752;
-  --d-border: #2a4060;
+  --d-card: #10233a;
+  --d-field: #10233a;
+  --d-border: rgb(255 255 255 / 0.12);
   --d-text: #f0f4f8;
   --d-muted: #7e97b0;
   --l-bg: #f4f6f9;
@@ -14,8 +14,6 @@
   --l-muted: #5b7186;
   --l-border: #dce3ea;
   --orange: #f7822a;
-  --orange-hover: #e8731c;
-  --orange-text: #b94e12; /* laranja com contraste AA sobre fundo claro */
   --green: #22c55e;
   --radius: 14px;
   --radius-sm: 10px;
@@ -125,7 +123,7 @@
   --card: var(--l-card);
   --border: var(--l-border);
   --field: var(--l-field);
-  --link: var(--orange-text);
+  --link: var(--orange);
 }
 
 .sectionHead {
@@ -274,14 +272,14 @@
 }
 
 .page .btn_primary:hover {
-  background: var(--orange-hover);
+  background: var(--orange);
   box-shadow: 0 8px 22px -6px rgb(247 130 42 / 0.65);
 }
 
 .page .btn_secondary {
   background: transparent;
   color: var(--d-text);
-  border-color: #3a5170;
+  border-color: rgb(255 255 255 / 0.25);
 }
 
 .page .btn_secondary:hover {
@@ -301,7 +299,7 @@
 
 .page .btn_white {
   background: #fff;
-  color: #b94e12;
+  color: #f7822a;
   box-shadow: 0 8px 22px -10px rgb(0 0 0 / 0.45);
 }
 
@@ -503,14 +501,11 @@
 }
 
 /* ---------- Faixa de destaque ---------- */
-/* Laranja mais escuro que o CTA para o texto branco ter contraste. */
 .band {
   position: relative;
   padding: 56px 0;
   color: #fff;
-  background:
-    radial-gradient(600px 300px at 100% 0%, rgb(255 255 255 / 0.14), transparent 70%),
-    linear-gradient(120deg, #dd6a20 0%, #c9561a 55%, #b0481a 100%);
+  background: var(--orange);
   overflow: hidden;
 }
 
@@ -609,7 +604,7 @@
   aspect-ratio: 16 / 9;
   border-radius: var(--radius);
   overflow: hidden;
-  background: #0b1520;
+  background: var(--d-bg);
   box-shadow: 0 24px 50px -24px rgb(16 35 58 / 0.45);
 }
 
@@ -621,7 +616,7 @@
   padding: 0;
   border: 0;
   cursor: pointer;
-  background: #0b1520;
+  background: var(--d-bg);
 }
 
 .videoFacade img {
@@ -737,7 +732,7 @@
 }
 
 .light .iconOrange {
-  color: var(--orange-text);
+  color: var(--orange);
 }
 
 /* ---------- Listas com check ---------- */
@@ -766,7 +761,6 @@
 .metodo {
   background:
     radial-gradient(700px 360px at 100% 0%, rgb(247 130 42 / 0.12), transparent 65%),
-    radial-gradient(600px 320px at 0% 100%, rgb(30 49 72 / 0.9), transparent 70%),
     var(--d-bg);
   border-top: 1px solid var(--d-border);
   border-bottom: 1px solid var(--d-border);
@@ -1295,7 +1289,7 @@
 .footer {
   /* espaço extra no celular para a barra fixa não cobrir o rodapé */
   padding: 40px 0 calc(96px + env(safe-area-inset-bottom));
-  background: #0c1d30;
+  background: var(--d-bg);
   border-top: 1px solid var(--d-border);
   color: var(--d-muted);
   font-size: 14px;
@@ -1371,7 +1365,7 @@
   height: 48px;
   flex: none;
   border-radius: 12px;
-  border: 1.5px solid #3a5170;
+  border: 1.5px solid rgb(255 255 255 / 0.25);
   color: var(--d-text) !important;
 }
 
