@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Cta } from '@/components/landing/Cta'
-import { DeviceMockup } from '@/components/landing/DeviceMockup'
+import Image from 'next/image'
+import fotoPlataforma from '@/components/landing/assets/plataforma-notebook.jpg'
 import { LandingAnalytics } from '@/components/landing/LandingAnalytics'
 import { StickyCta } from '@/components/landing/StickyCta'
 import { VideoEmbed } from '@/components/landing/VideoEmbed'
@@ -305,7 +306,14 @@ export default function Home() {
             </p>
           </div>
           <div className={`${s.container} ${s.heroDevice}`}>
-            <DeviceMockup />
+            <Image
+              src={fotoPlataforma}
+              alt="Pessoa usando a plataforma Departamento Leve no notebook"
+              className={s.heroPhoto}
+              sizes="(min-width: 1104px) 1040px, calc(100vw - 40px)"
+              placeholder="blur"
+              priority
+            />
           </div>
         </section>
 

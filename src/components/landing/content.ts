@@ -91,7 +91,7 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote: 'Este treinamento em licitações superou minhas expectativas. Objetivo, prático e com conteúdo aplicável ao dia a dia. Em poucas aulas já consegui colocar em prática e obter resultados reais.',
-    author: 'Jefferson Emolo',
+    author: 'Jeferson Carvalho',
     role: 'Engenheiro civil',
   },
 ]

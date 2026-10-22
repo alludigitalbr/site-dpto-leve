@@ -487,246 +487,19 @@
 }
 
 .heroDevice {
-  margin-top: 48px;
-  max-width: 1040px;
+  margin-top: 40px;
+  margin-bottom: 56px;
+  max-width: 1104px;
 }
 
-/* ---------- Notebook ---------- */
-.laptop {
-  position: relative;
-  width: 100%;
-  margin: 0 auto;
-}
-
-.laptop::before {
-  content: '';
-  position: absolute;
-  inset: 8% 6% -4%;
-  border-radius: 50%;
-  background: radial-gradient(closest-side, rgb(247 130 42 / 0.22), transparent);
-  filter: blur(10px);
-}
-
-.laptopLid {
-  position: relative;
-  width: 88%;
-  margin: 0 auto;
-  padding: 1.6% 1.6% 2%;
-  border-radius: 18px 18px 0 0;
-  background: linear-gradient(180deg, #2a3b52, #1a2738);
-  border: 1px solid #34486a;
-  border-bottom: 0;
-  box-shadow: 0 40px 80px -40px rgb(0 0 0 / 0.8);
-}
-
-.laptopScreen {
-  position: relative;
-  aspect-ratio: 16 / 10;
-  border-radius: 8px;
-  overflow: hidden;
-  background: #f4f6f9;
-  container-type: inline-size;
-}
-
-.laptopShot {
+/* ---------- Foto da plataforma ---------- */
+.heroPhoto {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top left;
-}
-
-.laptopBase {
-  position: relative;
-  height: clamp(10px, 2.2vw, 22px);
-  margin: 0 auto;
-  border-radius: 0 0 22px 22px;
-  background: linear-gradient(180deg, #3a4e6c, #1c2a3c);
-  box-shadow: 0 18px 30px -18px rgb(0 0 0 / 0.9);
-}
-
-.laptopBase::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 14%;
-  height: 40%;
-  transform: translateX(-50%);
-  border-radius: 0 0 10px 10px;
-  background: #16212f;
-}
-
-/* Tela ilustrativa no tema claro da plataforma; tamanhos em cqw acompanham a largura da tela */
-.ui {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  grid-template-columns: 22% 1fr;
-  font-size: 1.45cqw;
-  color: var(--l-text);
-  text-align: left;
-}
-
-.uiSide {
-  padding: 1.6em 1.2em;
-  background: var(--l-card);
-  border-right: 1px solid var(--l-border);
-}
-
-.page .uiBrand {
-  font-size: 1.5em;
-  font-weight: 800;
-  margin-bottom: 1.3em;
-}
-
-.uiBrand span {
-  color: var(--orange);
-}
-
-.page .uiGroup {
-  margin: 1.2em 0 0.5em;
-  font-size: 0.75em;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--l-muted);
-}
-
-.uiItem {
-  padding: 0.55em 0.8em;
-  border-radius: 0.5em;
-  color: #3d5266;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.uiItemOn {
-  background: var(--orange);
-  color: #fff;
-  font-weight: 700;
-}
-
-.uiMain {
-  padding: 1.6em 1.8em;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-
-.uiTop {
-  display: flex;
-  align-items: center;
-  gap: 1em;
-}
-
-.uiSearch {
-  flex: 1;
-  height: 2.4em;
-  border-radius: 0.6em;
-  background: var(--l-card);
-  border: 1px solid var(--l-border);
-}
-
-.uiAvatar {
-  width: 2.4em;
-  height: 2.4em;
-  border-radius: 50%;
-  background: var(--orange);
-  opacity: 0.85;
-}
-
-.page .uiTitle {
-  margin: 1.4em 0 1em;
-  font-size: 1.35em;
-  font-weight: 750;
-}
-
-.uiCols {
-  flex: 1;
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 1.2em;
-  min-height: 0;
-}
-
-.uiList {
-  display: grid;
-  gap: 0.7em;
-  align-content: start;
-}
-
-.uiRow {
-  display: flex;
-  align-items: center;
-  gap: 0.9em;
-  padding: 0.8em 1em;
-  border-radius: 0.7em;
-  background: var(--l-card);
-  border: 1px solid var(--l-border);
-  box-shadow: 0 0.15em 0.6em -0.3em rgb(20 33 47 / 0.15);
-}
-
-.uiRowIcon {
-  width: 2.2em;
-  height: 2.2em;
-  flex: none;
-  border-radius: 0.5em;
-  background: rgb(247 130 42 / 0.14);
-}
-
-.uiRowText {
-  flex: 1;
-  display: grid;
-  gap: 0.45em;
-}
-
-.uiRowText span {
-  display: block;
-  height: 0.55em;
-  border-radius: 0.3em;
-  background: #cfd8e2;
-}
-
-.uiRowText span + span {
-  background: #e4e9ef;
-}
-
-.uiPill {
-  width: 4.6em;
-  height: 1.5em;
-  flex: none;
-  border-radius: 999px;
-  background: rgb(34 197 94 / 0.14);
-  border: 1px solid rgb(34 197 94 / 0.5);
-}
-
-.uiPanel {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75em;
-  padding: 1.1em;
-  border-radius: 0.8em;
-  background: var(--l-card);
-  border: 1px solid var(--l-border);
-  box-shadow: 0 0.15em 0.6em -0.3em rgb(20 33 47 / 0.15);
-}
-
-.page .uiPanelTitle {
-  font-weight: 700;
-  margin-bottom: 0.3em;
-}
-
-.uiLine {
-  display: block;
-  height: 0.55em;
-  border-radius: 0.3em;
-  background: #e4e9ef;
-}
-
-.uiLineHi {
-  background: rgb(247 130 42 / 0.4);
+  height: auto;
+  border-radius: 20px;
+  border: 1px solid var(--d-border);
+  box-shadow: 0 40px 80px -40px rgb(0 0 0 / 0.75);
 }
 
 /* ---------- Faixa de destaque ---------- */
@@ -1824,7 +1597,8 @@
   }
 
   .heroDevice {
-    margin-top: 64px;
+    margin-top: 56px;
+    margin-bottom: 88px;
   }
 
   .metodoHead {
@@ -1840,27 +1614,6 @@
   .grid4,
   .trilhas {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-
-/* Celular: tela ilustrativa sem a coluna lateral de análise */
-@media (max-width: 559px) {
-  .ui {
-    grid-template-columns: 30% 1fr;
-    font-size: 2.2cqw;
-  }
-
-  .uiCols {
-    grid-template-columns: 1fr;
-  }
-
-  .uiPanel {
-    display: none;
-  }
-
-  .laptopLid {
-    width: 94%;
-    border-radius: 12px 12px 0 0;
   }
 }
 
