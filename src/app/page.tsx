@@ -1,9 +1,7 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import { Cta } from '@/components/landing/Cta'
 import Image from 'next/image'
 import fotoPlataforma from '@/components/landing/assets/plataforma-notebook.jpg'
-import { LandingAnalytics } from '@/components/landing/LandingAnalytics'
 import { StickyCta } from '@/components/landing/StickyCta'
 import { VideoEmbed } from '@/components/landing/VideoEmbed'
 import {
@@ -31,8 +29,6 @@ import {
 import { CASES, MENSALIDADE, MENTOR, SALARIO_ANALISTA, RESULT_STATS, SALARIO_FONTE, SHOW_PLACEHOLDERS, TESTIMONIALS } from '@/components/landing/content'
 import { KIWIFY_URL, LOGIN_URL, PRIVACY_URL, SITE_URL, TERMS_URL, WHATSAPP_GERAL_URL, YOUTUBE_VIDEO_ID } from '@/components/landing/links'
 import s from '@/components/landing/landing.module.css'
-
-const inter = Inter({ subsets: ['latin'], display: 'swap' })
 
 const TITLE = 'Departamento Leve | Inteligência Artificial para Licitações Públicas'
 const DESCRIPTION =
@@ -235,7 +231,7 @@ export default function Home() {
   const showCases = CASES.length > 0 || SHOW_PLACEHOLDERS
 
   return (
-    <div className={`${s.page} ${inter.className}`}>
+    <div className={s.page}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />
       <a href="#conteudo" className={s.skip}>
         Pular para o conteúdo
@@ -723,7 +719,6 @@ export default function Home() {
       </footer>
 
       <StickyCta />
-      <LandingAnalytics />
     </div>
   )
 }

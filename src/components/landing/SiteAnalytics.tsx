@@ -1,16 +1,17 @@
 'use client'
 
 import { useEffect, useSyncExternalStore } from 'react'
-import { TRACKING_PARAMS, getOrigem, track } from './analytics'
+import { ADS_CONVERSION_PENDING, GOOGLE_ADS_ID, TRACKING_PARAMS, getOrigem, sendAdsConversion, track } from './analytics'
 import { PRIVACY_URL } from './links'
 import s from './landing.module.css'
 
-// IDs reais entram por variável de ambiente. Nenhum configurado = nenhum
-// script de terceiros e nenhum aviso de cookies.
+// Rastreamento do site inteiro (montado no layout). IDs reais entram por
+// variável de ambiente; nenhum configurado = nenhum script de terceiros e
+// nenhum aviso de cookies.
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || ''
 const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID || ''
 const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID || ''
-const HAS_TRACKING = Boolean(GTM_ID || GA4_ID || META_PIXEL_ID)
+const HAS_TRACKING = Boolean(GTM_ID || GA4_ID || GOOGLE_ADS_ID || META_PIXEL_ID)
 
 const CONSENT_KEY = 'dl_consentimento'
 
@@ -19,6 +20,7 @@ type W = Window & {
   gtag?: (...args: unknown[]) => void
   fbq?: ((...args: unknown[]) => void) & { queue?: unknown[]; loaded?: boolean; version?: string; callMethod?: (...a: unknown[]) => void; push?: unknown }
   _fbq?: unknown
+  [ADS_CONVERSION_PENDING]?: boolean
 }
 
 function addScript(src: string) {
@@ -39,14 +41,17 @@ function loadTracking() {
     addScript(`https://www.googletagmanager.com/gtm.js?id=${encodeURIComponent(GTM_ID)}`)
   }
 
-  if (GA4_ID) {
+  // GA4 e Google Ads compartilham o mesmo gtag.js.
+  const gtagIds = [GA4_ID, GOOGLE_ADS_ID].filter(Boolean)
+  if (gtagIds.length && !w.gtag) {
     w.gtag = function gtag() {
       // eslint-disable-next-line prefer-rest-params -- formato exigido pelo gtag.js
       w.dataLayer!.push(arguments)
     }
     w.gtag('js', new Date())
-    w.gtag('config', GA4_ID, { send_page_view: false })
-    addScript(`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GA4_ID)}`)
+    if (GA4_ID) w.gtag('config', GA4_ID, { send_page_view: false })
+    if (GOOGLE_ADS_ID) w.gtag('config', GOOGLE_ADS_ID)
+    addScript(`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(gtagIds[0])}`)
   }
 
   if (META_PIXEL_ID && !w.fbq) {
@@ -64,6 +69,9 @@ function loadTracking() {
     fbq('init', META_PIXEL_ID)
     fbq('track', 'PageView')
   }
+
+  // Conversão pedida pela página /obrigado antes do consentimento.
+  if (w[ADS_CONVERSION_PENDING]) sendAdsConversion()
 }
 
 function readConsent(): 'granted' | 'denied' | null {
@@ -98,7 +106,7 @@ function subscribeConsent(l: () => void) {
 const getConsentSnapshot = () => memoria ?? readConsent()
 const getServerConsent = () => 'unknown' as const
 
-export function LandingAnalytics() {
+export function SiteAnalytics() {
   const consent = useSyncExternalStore(subscribeConsent, getConsentSnapshot, getServerConsent)
   const askConsent = HAS_TRACKING && consent === null
 
@@ -130,7 +138,7 @@ export function LandingAnalytics() {
       const destino = a.href
       track('cta_click', { cta_type: kind, section, destination: destino })
       if (kind === 'purchase') track('purchase_click', { section, destination: destino })
-      if (kind === 'whatsapp' || kind === 'trial') track('whatsapp_click', { section, intent: kind })
+      if (kind === 'whatsapp' || kind === 'trial' || kind === 'support') track('whatsapp_click', { section, intent: kind })
       if (kind === 'trial') track('trial_request_click', { section })
     }
     document.addEventListener('click', onClick)
@@ -147,24 +155,28 @@ export function LandingAnalytics() {
     }
   }
 
+  // .page traz os tokens e estilos de botão da landing para o aviso, que
+  // fica fora do conteúdo de cada página.
   return (
-    <div className={s.consent} role="region" aria-label="Preferências de cookies">
-      <p>
-        Usamos cookies de medição para entender como a página é utilizada. Você pode aceitar ou recusar.
-        {PRIVACY_URL && (
-          <>
-            {' '}
-            <a href={PRIVACY_URL}>Política de privacidade</a>.
-          </>
-        )}
-      </p>
-      <div className={s.consentActions}>
-        <button type="button" className={`${s.btn} ${s.btn_ghostDark} ${s.btn_sm}`} onClick={() => decide('denied')}>
-          Recusar
-        </button>
-        <button type="button" className={`${s.btn} ${s.btn_secondary} ${s.btn_sm}`} onClick={() => decide('granted')}>
-          Aceitar
-        </button>
+    <div className={`${s.page} ${s.consentRoot}`}>
+      <div className={s.consent} role="region" aria-label="Preferências de cookies">
+        <p>
+          Usamos cookies de medição para entender como o site é utilizado. Você pode aceitar ou recusar.
+          {PRIVACY_URL && (
+            <>
+              {' '}
+              <a href={PRIVACY_URL}>Política de privacidade</a>.
+            </>
+          )}
+        </p>
+        <div className={s.consentActions}>
+          <button type="button" className={`${s.btn} ${s.btn_ghostDark} ${s.btn_sm}`} onClick={() => decide('denied')}>
+            Recusar
+          </button>
+          <button type="button" className={`${s.btn} ${s.btn_secondary} ${s.btn_sm}`} onClick={() => decide('granted')}>
+            Aceitar
+          </button>
+        </div>
       </div>
     </div>
   )

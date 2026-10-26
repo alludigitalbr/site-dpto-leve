@@ -1379,7 +1379,91 @@
   display: none;
 }
 
+/* ---------- Página /obrigado ---------- */
+.thanks {
+  min-height: calc(100vh - var(--header-h) - 70px);
+  background:
+    radial-gradient(800px 420px at 50% -10%, rgb(247 130 42 / 0.14), transparent 65%),
+    var(--d-bg);
+}
+
+.thanksInner {
+  max-width: 820px;
+  text-align: center;
+}
+
+.thanksCheck {
+  display: inline-grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  background: rgb(34 197 94 / 0.14);
+  border: 2px solid var(--green);
+  color: var(--green);
+}
+
+.thanksCheck svg {
+  width: 32px;
+  height: 32px;
+}
+
+.page .thanksStepsTitle {
+  margin: 44px 0 18px;
+  font-size: 22px;
+  font-weight: 750;
+}
+
+.thanksSteps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+  text-align: left;
+}
+
+.thanksStep {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 18px 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--d-border);
+}
+
+.thanksStep p {
+  color: var(--d-muted);
+  font-size: 15px;
+}
+
+.thanksNum {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--orange);
+  color: #fff;
+  font-weight: 800;
+}
+
+.page .footerPlain {
+  padding-bottom: 24px;
+}
+
+.footerPlain .copy {
+  margin-top: 0;
+}
+
 /* ---------- Aviso de cookies ---------- */
+/* Wrapper do aviso montado no layout: só empresta os tokens de .page */
+.page.consentRoot {
+  background: none;
+}
+
 .consent {
   position: fixed;
   left: 12px;

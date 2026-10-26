@@ -9,6 +9,10 @@ export const WHATSAPP_GERAL_URL =
 export const WHATSAPP_TESTE_URL =
   'https://wa.me/5511991760897?text=Ol%C3%A1%21%20Gostaria%20de%20conhecer%20o%20Departamento%20Leve%20e%20entender%20como%20funciona%20o%20teste%20gratuito%20de%207%20dias.'
 
+// Suporte pós-compra (página /obrigado): pede a liberação do acesso.
+export const WHATSAPP_SUPORTE_URL =
+  'https://wa.me/5511991760897?text=Ol%C3%A1%21%20Acabei%20de%20comprar%20o%20Departamento%20Leve%20e%20gostaria%20de%20receber%20meu%20acesso%20%C3%A0%20plataforma.%20E-mail%20usado%20na%20compra%3A%20'
+
 export const YOUTUBE_VIDEO_ID = 'reXqjKz9Yh8'
 
 // Páginas legais só aparecem no rodapé quando as URLs oficiais forem configuradas.

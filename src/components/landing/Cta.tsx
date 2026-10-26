@@ -1,13 +1,14 @@
-import { KIWIFY_URL, WHATSAPP_GERAL_URL, WHATSAPP_TESTE_URL } from './links'
+import { KIWIFY_URL, WHATSAPP_GERAL_URL, WHATSAPP_SUPORTE_URL, WHATSAPP_TESTE_URL } from './links'
 import { IconWhatsApp } from './Icons'
 import s from './landing.module.css'
 
-type Kind = 'purchase' | 'whatsapp' | 'trial'
+type Kind = 'purchase' | 'whatsapp' | 'trial' | 'support'
 
 const DESTINO: Record<Kind, string> = {
   purchase: KIWIFY_URL,
   whatsapp: WHATSAPP_GERAL_URL,
   trial: WHATSAPP_TESTE_URL,
+  support: WHATSAPP_SUPORTE_URL,
 }
 
 type Props = {
