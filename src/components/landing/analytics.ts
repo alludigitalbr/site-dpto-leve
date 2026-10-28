@@ -6,6 +6,8 @@
 // conversão de compra do Google Ads sai da página /obrigado, que a Kiwify
 // abre depois do pagamento (configurada como página de obrigado do produto).
 
+import { MENSALIDADE } from './content'
+
 type Params = Record<string, string | number | undefined>
 
 export const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || ''
@@ -65,16 +67,21 @@ export function track(event: string, params: Params = {}) {
   if (typeof w.fbq === 'function' && event !== 'page_view') w.fbq('trackCustom', event, payload)
 }
 
-// Conversão de compra do Google Ads (gtag direto). Com GTM, use o evento
-// `purchase_thank_you_view` do dataLayer como acionador. Se o gtag ainda não
-// carregou, fica pendente e SiteAnalytics envia ao carregar.
+// Conversão de compra do Google Ads (gtag direto): o evento
+// `ads_conversion_Compra_1` criado na conta e, com rótulo configurado, a
+// conversão AW- clássica. Com GTM, use o evento `purchase_thank_you_view` do
+// dataLayer como acionador. Se o gtag ainda não carregou, fica pendente e
+// SiteAnalytics envia ao carregar.
 export function sendAdsConversion() {
-  if (typeof window === 'undefined' || !GOOGLE_ADS_ID || !GOOGLE_ADS_CONVERSION_LABEL) return
+  if (typeof window === 'undefined') return
   const w = window as W
   if (typeof w.gtag !== 'function') {
     w[ADS_CONVERSION_PENDING] = true
     return
   }
   w[ADS_CONVERSION_PENDING] = false
-  w.gtag('event', 'conversion', { send_to: `${GOOGLE_ADS_ID}/${GOOGLE_ADS_CONVERSION_LABEL}` })
+  w.gtag('event', 'ads_conversion_Compra_1', { value: MENSALIDADE, currency: 'BRL' })
+  if (GOOGLE_ADS_ID && GOOGLE_ADS_CONVERSION_LABEL) {
+    w.gtag('event', 'conversion', { send_to: `${GOOGLE_ADS_ID}/${GOOGLE_ADS_CONVERSION_LABEL}` })
+  }
 }

@@ -33,6 +33,6 @@ Nenhum script de terceiros carrega antes de o visitante aceitar os cookies.
 
 Todos vão para o `dataLayer` (e para GA4/Google Ads/Pixel, se carregados): `page_view`, `video_start`, `video_complete`, `cta_click`, `purchase_click`, `whatsapp_click`, `trial_request_click`, `purchase_thank_you_view`.
 
-`purchase_click` é apenas o clique que leva ao checkout da Kiwify, não uma venda. A compra concluída é medida na página `/obrigado` (fora do Google, `noindex`), que deve estar configurada na Kiwify como página de obrigado do produto: ela dispara `purchase_thank_you_view` e, com `NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL`, a conversão do Google Ads. Com GTM, use esse evento como acionador da tag de conversão. Os parâmetros `utm_*`, `gclid` e `fbclid` da visita são repassados aos links do checkout.
+`purchase_click` é apenas o clique que leva ao checkout da Kiwify, não uma venda. A compra concluída é medida na página `/obrigado` (fora do Google, `noindex`), que deve estar configurada na Kiwify como página de obrigado do produto: ela dispara `purchase_thank_you_view` e o evento de conversão `ads_conversion_Compra_1` (R$ 289, BRL) do Google Ads; com `NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL`, também a conversão AW- clássica. Com GTM, use esse evento como acionador da tag de conversão. Os parâmetros `utm_*`, `gclid` e `fbclid` da visita são repassados aos links do checkout.
 
 Links oficiais (checkout, WhatsApp, vídeo) ficam em `src/components/landing/links.ts`.
