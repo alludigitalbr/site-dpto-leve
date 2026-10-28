@@ -20,14 +20,14 @@ Variáveis de ambiente opcionais (ver `.env.example`):
 | Variável                                          | Efeito                                                                     |
 | ------------------------------------------------- | -------------------------------------------------------------------------- |
 | `NEXT_PUBLIC_GTM_ID`                              | Carrega o Google Tag Manager após consentimento.                           |
-| `NEXT_PUBLIC_GA4_ID`                              | Carrega o GA4 direto (gtag.js) após consentimento.                         |
+| `NEXT_PUBLIC_GA4_ID`                              | Tag do Google (gtag.js) carregada após consentimento. Padrão: `G-5VCMWLZHWJ`. |
 | `NEXT_PUBLIC_GOOGLE_ADS_ID`                       | Carrega a tag do Google Ads (AW-…) após consentimento, em todas as páginas. |
 | `NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL`         | Rótulo da conversão de compra, disparada uma vez por sessão na /obrigado.   |
 | `NEXT_PUBLIC_META_PIXEL_ID`                       | Carrega o Meta Pixel após consentimento.                                   |
 | `NEXT_PUBLIC_PRIVACY_URL` / `NEXT_PUBLIC_TERMS_URL` | Exibem os links de política de privacidade e termos de uso no rodapé.      |
 | `NEXT_PUBLIC_APP_LOGIN_URL`                       | Exibe o link "Entrar" para clientes acessarem a plataforma.                |
 
-Sem nenhum ID de rastreamento, nenhum script de terceiros é carregado e o aviso de cookies não aparece.
+Nenhum script de terceiros carrega antes de o visitante aceitar os cookies.
 
 ## Eventos de conversão
 

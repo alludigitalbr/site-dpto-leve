@@ -5,11 +5,11 @@ import { ADS_CONVERSION_PENDING, GOOGLE_ADS_ID, TRACKING_PARAMS, getOrigem, send
 import { PRIVACY_URL } from './links'
 import s from './landing.module.css'
 
-// Rastreamento do site inteiro (montado no layout). IDs reais entram por
-// variável de ambiente; nenhum configurado = nenhum script de terceiros e
-// nenhum aviso de cookies.
+// Rastreamento do site inteiro (montado no layout). IDs entram por
+// variável de ambiente; a tag do Google (G-) da conta já vem como padrão.
+// Tudo só carrega após o consentimento de cookies.
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || ''
-const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID || ''
+const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID || 'G-5VCMWLZHWJ'
 const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID || ''
 const HAS_TRACKING = Boolean(GTM_ID || GA4_ID || GOOGLE_ADS_ID || META_PIXEL_ID)
 
